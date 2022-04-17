@@ -41,12 +41,18 @@ Sub AllStocksAnalysisRefactored()
     
     '1a) Create a ticker Index
     
+    Dim tickerIndex As Integer
 
     '1b) Create three output arrays
     
+    Dim tickerVolumes As Long
+    Dim tickerStartingPrices As Single
+    Dim tickerEndingPrices As Single
     
     ''2a) Create a for loop to initialize the tickerVolumes to zero.
-    
+    For i = 0 To 11
+        tickerVolumes(i) = 0
+    Next i
         
     ''2b) Loop over all the rows in the spreadsheet.
     For i = 2 To RowCount
@@ -109,5 +115,11 @@ Sub AllStocksAnalysisRefactored()
  
     endTime = Timer
     MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)
+
+End Sub
+
+Sub ClearWorksheet()
+
+    Cells.Clear
 
 End Sub

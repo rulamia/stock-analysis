@@ -42,12 +42,13 @@ Sub AllStocksAnalysisRefactored()
     '1a) Create a ticker Index
     
     Dim tickerIndex As Integer
+    tickerIndex = 0
 
     '1b) Create three output arrays
     
-    Dim tickerVolumes As Long
-    Dim tickerStartingPrices As Single
-    Dim tickerEndingPrices As Single
+    Dim tickerVolumes(12) As Long
+    Dim tickerStartingPrices(12) As Single
+    Dim tickerEndingPrices(12) As Single
     
     ''2a) Create a for loop to initialize the tickerVolumes to zero.
     For i = 0 To 11
@@ -58,24 +59,25 @@ Sub AllStocksAnalysisRefactored()
     For i = 2 To RowCount
     
         '3a) Increase volume for current ticker
-        
+         tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value
         
         '3b) Check if the current row is the first row with the selected tickerIndex.
         'If  Then
-            
-            
-            
+         If Cells(i - 1, 1) <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
+            tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
+         End If
         'End If
         
         '3c) check if the current row is the last row with the selected ticker
          'If the next row’s ticker doesn’t match, increase the tickerIndex.
         'If  Then
-            
-            
+         If Cells(i - 1, 12) <> tickers(tickerIndex) And Cells(i, 12).Value = tickers(tickerIndex) Then
+           tickerEndingPrices(tickerIndex) = Cells(i, 6).Value
+        
 
             '3d Increase the tickerIndex.
-            
-            
+            tickerIndex = tickerIndex + 1
+         End If
         'End If
     
     Next i
@@ -84,7 +86,9 @@ Sub AllStocksAnalysisRefactored()
     For i = 0 To 11
         
         Worksheets("All Stocks Analysis").Activate
-        
+        Cells(4 + i, 1).Value = tickers(i)
+        Cells(4 + i, 2).Value = tickerVolumes(i)
+        Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
         
     Next i
     

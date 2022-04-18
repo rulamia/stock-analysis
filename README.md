@@ -23,4 +23,4 @@ An advantage to refactoring code is not having to start with a blank page and st
 
 For example, in two of the for loops I put a minus sign in both instead of a minus in one and a plus in the other. This lead to my code not running correctly. I've highlighted below the for loops in question and where I had missed the plus and minus.
 
-![refactoring example](https://github.com/rulamia/stock-analysis/blob/main/Resources/refactor_example.PNG)
+![refactoring example](https://github.com/rulamia/stock-analysis/blob/main/Resources/refactor%20example.PNG)
